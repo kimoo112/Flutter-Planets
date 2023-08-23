@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../model/datas.dart';
+import '../model/data.dart';
 import 'booking.dart';
 import 'details.dart';
 
@@ -13,14 +13,18 @@ class homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+        leading: IconButton(onPressed: () {}, icon: Icon(Icons.search,
+              color: Colors.white,
+        )),
         centerTitle: true,
         title: Text("Solar System",
             style: TextStyle(
               fontSize: 25,
+              color: Colors.white,
               fontWeight: FontWeight.bold,
             )),
         actions: [
@@ -29,16 +33,17 @@ class homepage extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => BookingScreen()));
               },
-              icon: Icon(Icons.account_circle))
+              color: Colors.white,
+              icon: Icon(Icons.account_circle,))
         ],
       ),
       extendBodyBehindAppBar: true,
       body: Container(
-        padding: EdgeInsets.only(top: 30),
         constraints: BoxConstraints.expand(),
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/Homepage_SatellitesSpaceDebris-scaled.jpg'),
+              image: AssetImage(
+                  'assets/Homepage_SatellitesSpaceDebris-scaled.jpg'),
               fit: BoxFit.cover),
         ),
         child: SingleChildScrollView(
@@ -48,25 +53,25 @@ class homepage extends StatelessWidget {
               ...planet
                   .map(
                     (planets) => Stack(
-                      alignment: Alignment.topLeft,
+                      alignment: Alignment.topRight,
                       children: [
                         Hero(
                           tag: planets.name,
                           child: Padding(
-                            padding: EdgeInsets.only(top: 40),
+                            padding: EdgeInsets.only(top: 25),
                             child: GestureDetector(
                               child: Card(
-                                margin: EdgeInsets.all(10),
+                                margin: EdgeInsets.all(7),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20)),
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
                                 elevation: 30,
                                 child: Container(
-                                  padding: EdgeInsets.only(top: 10),
-                                  height: 150,
-                                  decoration: BoxDecoration(
+  padding: EdgeInsets.only(top: 10),
+    height: 150,
+   decoration: BoxDecoration(
                                     gradient: LinearGradient(colors: [
-                                      Color.fromARGB(255, 2, 107, 194),
+      Color.fromARGB(255, 2, 107, 194),
                                       Color.fromARGB(255, 2, 51, 121),
                                       Color.fromARGB(255, 3, 10, 56)
                                     ]),
@@ -76,7 +81,7 @@ class homepage extends StatelessWidget {
                                       onTap: () => Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => date(
+                                            builder: (context) => DetailsScreen(
                                               name: planets.name,
                                               detalis: planets.detalis,
                                               photo: planets.photo,
@@ -89,9 +94,13 @@ class homepage extends StatelessWidget {
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white)),
-                                      subtitle: Text(
-                                        planets.detalis,
-                                        style: TextStyle(color: Colors.white),
+                                      subtitle: 
+                                      Padding(
+                                        padding: const EdgeInsets.all(3.0),
+                                        child: Text(
+                                          planets.detalis,
+                                          style: TextStyle(color: Colors.white),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -108,7 +117,7 @@ class homepage extends StatelessWidget {
                             color: Colors.transparent,
                           ),
                           child: Hero(
-                            tag: 1,
+                            tag: planets.photo,
                             child: Padding(
                               padding: EdgeInsets.all(1),
                               child: DecoratedBox(
@@ -125,7 +134,7 @@ class homepage extends StatelessWidget {
                       ],
                     ),
                   )
-                  .toList()
+                
             ],
           ),
         ),

@@ -2,10 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_planets/pages/confirm.dart';
-
 import 'package:flutter_planets/pages/homepage.dart';
+import 'package:flutter_planets/pages/splash.dart';
 import 'package:flutter_planets/pages/start.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -21,19 +20,17 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-      
-        primarySwatch: Colors.blue,
+        fontFamily: "Raleway",
+        useMaterial3: true,
       ),
-   
-          initialRoute: '/',
-          routes: {
-            // When navigating to the "/" route, build the FirstScreen widget.
-            '/': (context) =>  StartScreen(),
+      initialRoute: '/',
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        '/': (context) => SplashScreen(),
 
-            // When navigating to the "/second" route, build the SecondScreen widget.
-            // '/2': (context) =>  DetailsView(),
-          },
-        
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        // '/2': (context) =>  DetailsView(),
+      },
     );
   }
 }
